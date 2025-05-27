@@ -1,0 +1,157 @@
+/* Custom styles for JoSAA Choice Filling App */
+
+/* General styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Card styles */
+.card {
+    border-radius: 0;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+}
+
+.card-header {
+    border-radius: 0 !important;
+}
+
+/* Table styles */
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* Button styles */
+.btn {
+    border-radius: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 0.25rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+}
+
+/* Form styles */
+.form-control:focus, .form-select:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25);
+    border-radius: 0;
+}
+
+.form-control, .form-select {
+    border-radius: 0;
+}
+
+/* Navbar active state */
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
+/* Theme colors */
+.bg-primary {
+    background-color: #343a40 !important;
+}
+
+.bg-success {
+    background-color: #495057 !important;
+}
+
+.bg-danger {
+    background-color: #6c757d !important;
+}
+
+.bg-info {
+    background-color: #495057 !important;
+    color: #fff !important;
+}
+
+.btn-primary {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-primary:hover {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.btn-success {
+    background-color: #495057;
+    border-color: #495057;
+}
+
+.btn-success:hover {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-danger {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-danger:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+.btn-secondary {
+    background-color: #adb5bd;
+    border-color: #adb5bd;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.badge.bg-info {
+    color: #fff !important;
+}
+
+.badge.bg-primary, .badge.bg-success, .badge.bg-danger, .badge.bg-secondary {
+    color: #fff;
+}
+
+/* Drag and drop styles */
+.draggable {
+    cursor: move;
+}
+
+.dragging {
+    opacity: 0.5;
+    background-color: #f8f9fa;
+}
+
+/* Custom animations */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+} 

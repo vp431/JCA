@@ -1,0 +1,57 @@
+Sr. No | College | Branch | Cutoff Rank
+--------------------------------------------------------------------------------
+1 | IIT Bombay | Computer | N/A
+2 | IIT Delhi | Computer | N/A
+3 | IIT Madras | Computer | N/A
+4 | IIT Kanpur | Computer | N/A
+5 | IIT Delhi | MNC | N/A
+6 | IIT Madras | AI + DS | N/A
+7 | IIT Kharagpur | Computer | N/A
+8 | IIT Hyderabad | Computer | N/A
+9 | IIT Roorkee | Computer | N/A
+10 | IIT Roorkee | AI + DS | N/A
+11 | IIT Guwahati | Computer | N/A
+12 | IIT Kharagpur | AI | N/A
+13 | IIT Guwahati | AI + DS | N/A
+14 | IIT Hyderabad | AI | N/A
+15 | IIT Guwahati | MNC | N/A
+16 | IIT Roorkee | EC | N/A
+17 | IIT Hyderabad | MNC | N/A
+18 | IIT BHU | Computer | N/A
+19 | IIT Gandhinagar | Computer | N/A
+20 | IIT Guwahati | EC | N/A
+21 | IIT Indore | Computer | N/A
+22 | IIT Gandhinagar | AI | N/A
+23 | IIT Indore | MNC | N/A
+24 | IIT Ropar | Computer | N/A
+25 | IIT Tirupati | Computer | N/A
+26 | IIT Mandi | Computer | N/A
+27 | IIT BHU | Electronics | N/A
+28 | IIT Patna | Computer | N/A
+29 | IIT Jodhpur | Computer | N/A
+30 | IIT Bhubaneshwar | Computer | N/A
+31 | IIT Mandi | MNC | N/A
+32 | IIT Jodhpur | AI + DS | N/A
+33 | IIT Ropar | AI + DS | N/A
+34 | IIT Dhanbad | Computer | N/A
+35 | IIT Palakkad | Computer | N/A
+36 | IIT Mandi | DS | N/A
+37 | IIT Patna | AI + DS | N/A
+38 | IIT Ropar | MNC | N/A
+39 | IIT Dhanbad | MNC | N/A
+40 | IIT Patna | MNC | N/A
+41 | IIT Bhubaneshwar | EC | N/A
+42 | IIT Dharwad | Computer | N/A
+43 | IIT Goa | Computer | N/A
+44 | IIT Bhilai | Computer | N/A
+45 | IIT Patna | EC | N/A
+46 | IIT Jammu | Computer | N/A
+47 | IIT Dharwad | MNC | N/A
+48 | IIT Dhanbad | EC | N/A
+49 | IIT Palakkad | DS | N/A
+50 | IIT Goa | MNC | N/A
+51 | IIT Jammu | MNC | N/A
+52 | IIT Bhilai | DS + AI | N/A
+53 | IIT Dharwad | EC | N/A
+54 | IIT Bhilai | EC | N/A
+

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Add College Branch - JoSAA Choice Filling App{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Add College Branch</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('add_college_branch') }}">
+            <div class="mb-3">
+                <label for="college_id" class="form-label">Select College</label>
+                <div class="input-group">
+                    <select class="form-select" id="college_id" name="college_id" required>
+                        <option value="" selected disabled>-- Select College --</option>
+                        {% for college in colleges %}
+                        <option value="{{ college.id }}">{{ college.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <a href="{{ url_for('add_college') }}" class="btn btn-primary">New College</a>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="branch_name" class="form-label">Branch</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="branch_name" name="branch_name" list="branch-list" required>
+                    <datalist id="branch-list">
+                        {% for branch in branches %}
+                        <option value="{{ branch.name }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="cutoff_rank_type" class="form-label">Last Year Cutoff Rank</label>
+                <div class="d-flex align-items-center">
+                    <div class="form-check me-4">
+                        <input class="form-check-input" type="radio" name="cutoff_rank_type" id="cutoff_rank_numeric" value="numeric" checked>
+                        <label class="form-check-label" for="cutoff_rank_numeric">
+                            Numeric Value
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="cutoff_rank_type" id="cutoff_rank_na" value="na">
+                        <label class="form-check-label" for="cutoff_rank_na">
+                            N/A
+                        </label>
+                    </div>
+                </div>
+                <div id="numeric-input" class="mt-2">
+                    <input type="number" class="form-control" id="cutoff_rank" name="cutoff_rank">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Default Branches</label>
+                <div class="d-flex flex-wrap">
+                    {% for branch_name in default_branches %}
+                    <button type="button" class="btn btn-outline-primary me-2 mb-2 branch-btn" 
+                            onclick="selectBranch('{{ branch_name }}')">
+                        {{ branch_name }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('colleges') }}" class="btn btn-secondary">Back to Colleges</a>
+                <button type="submit" class="btn btn-primary">Add Branch</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function selectBranch(branchName) {
+        document.getElementById('branch_name').value = branchName;
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const numericRadio = document.getElementById('cutoff_rank_numeric');
+        const naRadio = document.getElementById('cutoff_rank_na');
+        const numericInput = document.getElementById('numeric-input');
+        const cutoffRankInput = document.getElementById('cutoff_rank');
+        
+        // Function to toggle input visibility
+        function toggleCutoffInput() {
+            if (numericRadio.checked) {
+                numericInput.style.display = 'block';
+                cutoffRankInput.setAttribute('required', '');
+            } else {
+                numericInput.style.display = 'none';
+                cutoffRankInput.removeAttribute('required');
+            }
+        }
+        
+        // Initial state
+        toggleCutoffInput();
+        
+        // Add event listeners
+        numericRadio.addEventListener('change', toggleCutoffInput);
+        naRadio.addEventListener('change', toggleCutoffInput);
+    });
+</script>
+{% endblock %} 

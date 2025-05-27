@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Import List - JoSAA Choice Filling App{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Import Choice List</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-info">
+            <p>You can import a list that was previously exported as a TXT file. The format should match the export format.</p>
+        </div>
+        
+        <form method="POST" action="{{ url_for('import_list') }}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="list_file" class="form-label">Select List File (.txt)</label>
+                <input type="file" class="form-control" id="list_file" name="list_file" accept=".txt" required>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('lists') }}" class="btn btn-secondary">Back to Lists</a>
+                <button type="submit" class="btn btn-danger">Import List</button>
+            </div>
+        </form>
+        
+        <div class="mt-4">
+            <h5>Expected Format</h5>
+            <pre class="bg-light p-3 border rounded">
+List: My College Choices
+Created by: John Doe
+Date: 2023-07-15
+
+Sr. No | College | City | Branch | Cutoff Rank
+--------------------------------------------------------------------------------
+1 | IIT Bombay | Mumbai | CSE | 100
+2 | IIT Delhi | Delhi | CSE | 200
+3 | IIT Madras | Chennai | AI | 300
+            </pre>
+        </div>
+    </div>
+</div>
+{% endblock %} 
