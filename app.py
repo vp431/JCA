@@ -11,8 +11,13 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, 
 from reportlab.lib.styles import getSampleStyleSheet
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'college_choice_filling_app'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///college_choice.db'
+# Use environment variables for configuration
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'college_choice_filling_app')
+# For Render, use SQLite for development and PostgreSQL for production
+if 'DATABASE_URL' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql://')
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///college_choice.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -793,4 +798,6 @@ with app.app_context():
     db.session.commit()
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    # Use debug mode only in development
+    debug_mode = os.environ.get('FLASK_ENV', 'development') == 'development'
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=debug_mode)

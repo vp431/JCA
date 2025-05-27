@@ -5,4 +5,5 @@ Werkzeug==2.3.7
 SQLAlchemy==2.0.20
 pdfkit==1.0.0
 python-dotenv==1.0.0
-reportlab==4.0.4 
+reportlab==4.0.4
+gunicorn==21.2.0 
