@@ -261,6 +261,51 @@ def move_choice(choice_id, direction):
     
     return redirect(url_for('edit_list', list_id=choice.list_id))
 
+@app.route('/move_choice_to_position/<int:choice_id>', methods=['POST'])
+def move_choice_to_position(choice_id):
+    choice = Choice.query.get_or_404(choice_id)
+    new_position = request.form.get('new_position', type=int)
+    
+    if not new_position or new_position < 1:
+        flash('Please enter a valid position number', 'danger')
+        return redirect(url_for('edit_list', list_id=choice.list_id))
+    
+    # Get all choices in the list
+    all_choices = Choice.query.filter_by(list_id=choice.list_id).order_by(Choice.position).all()
+    
+    # Check if position is valid
+    if new_position > len(all_choices):
+        flash(f'Position cannot be greater than the total number of choices ({len(all_choices)})', 'danger')
+        return redirect(url_for('edit_list', list_id=choice.list_id))
+    
+    # Store the current position
+    current_position = choice.position
+    
+    # If the new position is the same as current, do nothing
+    if new_position == current_position:
+        return redirect(url_for('edit_list', list_id=choice.list_id))
+    
+    # Update positions of all affected choices
+    if new_position < current_position:
+        # Moving up: increment positions of choices between new_position and current_position-1
+        for c in all_choices:
+            if new_position <= c.position < current_position:
+                c.position += 1
+    else:
+        # Moving down: decrement positions of choices between current_position+1 and new_position
+        for c in all_choices:
+            if current_position < c.position <= new_position:
+                c.position -= 1
+    
+    # Set the new position for the choice
+    choice.position = new_position
+    
+    # Commit all changes
+    db.session.commit()
+    
+    flash(f'Choice moved to position {new_position}', 'success')
+    return redirect(url_for('edit_list', list_id=choice.list_id))
+
 @app.route('/delete_choice/<int:choice_id>', methods=['POST'])
 def delete_choice(choice_id):
     choice = Choice.query.get_or_404(choice_id)

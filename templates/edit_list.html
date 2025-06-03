@@ -117,7 +117,7 @@
             <div class="card-body">
                 {% if choices %}
                 <div class="alert alert-info mb-3">
-                    <i class="fas fa-info-circle"></i> You can reorder items by dragging and dropping or using the up/down buttons. Remember to save your changes!
+                    <i class="fas fa-info-circle"></i> You can reorder items by dragging and dropping or using the up/down buttons. Use the "Move To" button to directly move a choice to a specific position. Remember to save your changes!
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
@@ -145,9 +145,33 @@
                                         <form action="{{ url_for('move_choice', choice_id=choice.id, direction='down') }}" method="POST" style="display: inline;">
                                             <button type="submit" class="btn btn-sm btn-outline-secondary" {% if choice.position == choices|length %}disabled{% endif %}>Down</button>
                                         </form>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#movePositionModal{{ choice.id }}">Move To</button>
                                         <form action="{{ url_for('delete_choice', choice_id=choice.id) }}" method="POST" style="display: inline;">
                                             <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to remove this choice?')">Delete</button>
                                         </form>
+                                    </div>
+                                    
+                                    <!-- Move to Position Modal -->
+                                    <div class="modal fade" id="movePositionModal{{ choice.id }}" tabindex="-1" aria-labelledby="movePositionModalLabel{{ choice.id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title" id="movePositionModalLabel{{ choice.id }}">Move to Position</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ url_for('move_choice_to_position', choice_id=choice.id) }}" method="POST">
+                                                        <div class="mb-3">
+                                                            <label for="new_position{{ choice.id }}" class="form-label">New Position (1-{{ choices|length }})</label>
+                                                            <input type="number" class="form-control" id="new_position{{ choice.id }}" name="new_position" min="1" max="{{ choices|length }}" value="{{ choice.position }}" required>
+                                                        </div>
+                                                        <div class="d-grid">
+                                                            <button type="submit" class="btn btn-primary">Move</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
